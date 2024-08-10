@@ -1,0 +1,23 @@
+# Use uma imagem oficial do Node.js
+FROM node:16-alpine
+
+# Defina o diretório de trabalho
+WORKDIR /app
+
+# Copie os arquivos do projeto
+COPY . .
+
+# Instale as dependências do projeto
+RUN npm install
+
+# Construa a aplicação
+RUN npm run build
+
+# Instale o servidor HTTP
+RUN npm install -g http-server
+
+# Exponha a porta 8080
+EXPOSE 8080
+
+# Comando para iniciar o servidor HTTP
+CMD ["npm", "run", "dev"]
